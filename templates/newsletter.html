@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekend Spotlight Newsletter</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f7;
+        color: #111;
+      }
+
+      .newsletter {
+        max-width: 640px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 26px 26px 0 0;
+        overflow: hidden;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .preheader {
+        text-align: center;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: #7e7e82;
+        padding: 16px 24px 0;
+      }
+
+      .masthead {
+        background: linear-gradient(135deg, #ef0d33, #ff2d55);
+        color: #fff;
+        padding: 48px 36px 32px;
+      }
+
+      .masthead__pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.14);
+        margin-bottom: 22px;
+      }
+
+      .masthead__pill svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+
+      .masthead__headline {
+        font-size: 26px;
+        line-height: 1.24;
+        margin: 0 0 14px;
+        max-width: 420px;
+      }
+
+      .masthead__subhead {
+        margin: 0;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .section {
+        padding: 32px 36px;
+        border-top: 1px solid #efeff1;
+      }
+
+      .section--top-story {
+        padding-top: 40px;
+      }
+
+      .eyebrow {
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        color: #ef0d33;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .story {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .story__image-wrapper {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .story__image {
+        width: 100%;
+        display: block;
+      }
+
+      .story__badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        background: #ffffff;
+        color: #ef0d33;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 7px 12px;
+        border-radius: 999px;
+      }
+
+      .story__kicker {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        color: #111;
+        margin-bottom: 12px;
+      }
+
+      .story__title {
+        font-size: 30px;
+        font-weight: 700;
+        margin: 0 0 14px;
+        line-height: 1.12;
+      }
+
+      .story__title a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .story__title a:hover {
+        text-decoration: underline;
+      }
+
+      .story__meta {
+        color: #7a7a7f;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-bottom: 18px;
+      }
+
+      .story__summary {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #2f2f33;
+      }
+
+      .grid {
+        display: grid;
+        gap: 28px;
+      }
+
+      .grid--three {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 22px;
+        box-shadow: 0 12px 32px rgba(17, 17, 17, 0.08);
+        padding: 22px 20px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .card__eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #ef0d33;
+      }
+
+      .card__title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .card__title a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .card__title a:hover {
+        text-decoration: underline;
+      }
+
+      .card__meta {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #7a7a7f;
+      }
+
+      .divider {
+        border: 0;
+        border-top: 1px solid #efeff1;
+        margin: 36px 0 28px;
+      }
+
+      .cta {
+        background: #f2f2f4;
+        border-radius: 24px;
+        padding: 26px;
+        text-align: center;
+      }
+
+      .cta__title {
+        margin: 0 0 10px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .cta__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ef0d33, #ff2d55);
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      .footer {
+        background: #0f1115;
+        color: rgba(255, 255, 255, 0.72);
+        padding: 28px 36px 40px;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .footer__title {
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        color: #fff;
+      }
+
+      .footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+      }
+
+      .footer__links a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .footer__links a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .newsletter {
+          border-radius: 0;
+        }
+
+        .section,
+        .masthead {
+          padding: 32px 24px;
+        }
+
+        .story {
+          grid-template-columns: 1fr;
+        }
+
+        .grid--three {
+          grid-template-columns: 1fr;
+        }
+
+        .cta {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="newsletter">
+      <p class="preheader">Your weekend briefing — delivered every Saturday.</p>
+      <header class="masthead">
+        <span class="masthead__pill">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M11.27 2.27a1.5 1.5 0 0 1 2.12 0l8.34 8.34a1.5 1.5 0 0 1 0 2.12l-8.34 8.34a1.5 1.5 0 0 1-2.12 0l-8.34-8.34a1.5 1.5 0 0 1 0-2.12z"
+            />
+          </svg>
+          Good Morning
+        </span>
+        <h1 class="masthead__headline">
+          A futuristic coastal town, the baby whisperer behind bars, and more
+        </h1>
+        <p class="masthead__subhead">
+          Saturday, November 1 · We curated five reads and three quick hits to
+          explore this weekend.
+        </p>
+      </header>
+
+      <section class="section section--top-story">
+        <p class="eyebrow">The Interview</p>
+        <article class="story">
+          <figure class="story__image-wrapper">
+            <img
+              class="story__image"
+              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+              alt="Portrait of a featured guest"
+            />
+            <span class="story__badge">Weekend Audio</span>
+          </figure>
+          <div>
+            <div class="story__kicker">Exclusive Conversation</div>
+            <h2 class="story__title">
+              <a href="#">Jennifer Lawson Goes Dark</a>
+            </h2>
+            <div class="story__meta">THE LISTENER · 18 MIN LISTEN</div>
+            <p class="story__summary">
+              The superstar opens up about her most intense role yet, cosmetic
+              surgery, and why she can no longer watch her old interviews. “That
+              person feels like a stranger now.”
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Weekend Pursuits</p>
+        <div class="grid grid--three">
+          <article class="card">
+            <span class="card__eyebrow">One thing to watch</span>
+            <h3 class="card__title">
+              <a href="#">This coastal drama is the talk of the film fest</a>
+            </h3>
+            <span class="card__meta">The Hollywood Reporter</span>
+          </article>
+          <article class="card">
+            <span class="card__eyebrow">One thing to play</span>
+            <h3 class="card__title">
+              <a href="#">Solve today’s interactive crossword challenge</a>
+            </h3>
+            <span class="card__meta">Puzzle Society</span>
+          </article>
+          <article class="card">
+            <span class="card__eyebrow">One thing to eat</span>
+            <h3 class="card__title">
+              <a href="#">Make these caramel-apple snacking cakes</a>
+            </h3>
+            <span class="card__meta">Bon Appétit</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="eyebrow">Five Great Weekend Reads</p>
+        <article class="story">
+          <figure class="story__image-wrapper">
+            <img
+              class="story__image"
+              src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=900&q=80"
+              alt="A person looking through a window"
+            />
+          </figure>
+          <div>
+            <div class="story__kicker">Feature</div>
+            <h2 class="story__title">
+              <a href="#">The Baby Whisperer Behind Bars</a>
+            </h2>
+            <div class="story__meta">Apple Newsroom</div>
+            <p class="story__summary">
+              How a legendary neonatal nurse landed on the wrong side of the
+              law—and the families fighting to bring her back to the NICU.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="section">
+        <hr class="divider" />
+        <div class="cta">
+          <h3 class="cta__title">Game on, sports fans</h3>
+          <p>
+            Follow your favorite teams for the latest scores, stats, and
+            stories.
+          </p>
+          <a class="cta__button" href="#">Browse Teams</a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__title">Stay in the loop</p>
+        <div class="footer__links">
+          <a href="#">Download the app</a>
+          <a href="#">Manage preferences</a>
+          <a href="#">Unsubscribe</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

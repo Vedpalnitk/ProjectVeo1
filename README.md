@@ -151,3 +151,9 @@ You can safely edit this file by hand if you need to make bulk updates.
 - GBP — British Pound Sterling
 - JPY — Japanese Yen
 - AUD — Australian Dollar
+
+## Newsletter Template
+
+A standalone Apple News-inspired newsletter mockup is available at
+`templates/newsletter.html`. Open the file in a browser to preview the layout or
+use it as a starting point for your own HTML email design.
